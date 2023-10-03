@@ -1,25 +1,42 @@
-import logo from './logo.svg';
+import React from 'react'
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
+import { StyledEngineProvider } from '@mui/material/styles';
 import './App.css';
 
-function App() {
+
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
+import Slider from '@mui/material/Slider';
+
+
+
+const cache = createCache({
+  key: 'css',
+  prepend: true, // Ensure Emotion's styles are injected first
+});
+
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  <CacheProvider value={cache}>
+    <StyledEngineProvider injectFirst>
+
+        <div className='bg-black'>App</div>
+        <Slider defaultValue={30} />
+        <Slider
+        defaultValue={30}
+        className="text-teal-600"
+        slotProps={{ thumb: { className: 'rounded-sm' } }}
+      />
+
+    </StyledEngineProvider>
+  </CacheProvider>
+
+  )
 }
 
-export default App;
+export default App
