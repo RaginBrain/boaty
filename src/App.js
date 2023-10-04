@@ -25,7 +25,9 @@ const cache = createCache({
 
 const App = () => {
 
-  const activeMenu = useStateContext();
+  const {activeMenu} = useStateContext();
+
+
 
   return (
   <CacheProvider value={cache}>
@@ -34,11 +36,11 @@ const App = () => {
        <div className="flex relative">
 
           {activeMenu ? (
-          <div className= "w-72 fixed sidebar bg-white">
+          <div className= "w-full sm:w-72 fixed sidebar bg-white z-50 transition-all duration-200">
               <Sidebar />
           </div>
           ) :(
-          <div className="w-0">
+          <div className="w-0 transition-all duration-200">
               <Sidebar />
           </div>
           )}
